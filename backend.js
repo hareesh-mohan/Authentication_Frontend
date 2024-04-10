@@ -8,10 +8,11 @@ app.use(cors());
 mongoose.connect('mongodb+srv://score-board:score%402024@cluster0.vu0ao.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(express.json());
 app.post('/signup', async (req, res) => {
-  const { name, age, email, userType, password } = req.body;
-  const newUser = new User({ name, age, email, userType, password });
+  const { name, age, email, userType, password ,uniqueId } = req.body;
+  const newUser = new User({ name, age, email, userType, password ,uniqueId});
   await newUser.save();
   res.status(201).send({ message: 'User created successfully' });
+  
 });
 
 app.post('/login', async (req, res) => {
